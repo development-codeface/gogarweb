@@ -1,0 +1,87 @@
+<div class="row mb-4 mt-4">
+    <div class="col-md-2">
+        <div class="input-group-append">
+            <span (click)="backClicked()" class="btn btn-success  "><i class="fa fa-chevron-circle-left"></i> Back</span>
+        </div>
+    </div>
+    <div class="col-md-2"> 
+          <div class="input-group-append">
+              <span (click)="openModal1(modalContent1, null)" class="btn btn-success  "><i class="fa fa-plus-circle"></i> Add Stage</span>   
+          </div>
+    </div>
+</div>
+<div class="row mb-4 mt-4">
+  
+ 
+
+  <div *ngFor="let stage of cat_datafull.stage" class="col-md-4 mb-4">
+
+        <div class="flip">
+          <div class="content">
+              <div class="front">
+                  <div class="card border-0 box-shadow rounded-0">
+                      <div class="card-header border-0 rounded-0 text-muted">
+                          <h5 class="mb-0">
+                            
+                              {{stage.stagename}} 
+                          </h5>
+                          <div class="widget-controls"> 
+                              <a (click)="openModal1(modalContent1, stage)" href="javascript:void(0);" class="transition"><i class="fa fa-pencil"></i></a>             
+                              <a (click)="deletestage(stage)" href="javascript:void(0);" class="transition"><i class="fa fa-trash"></i></a> 
+                          </div>        
+                      </div>
+                       <div class="card-body pt-3">
+                          
+                        <div class="media">
+                              <div class="media-body ml-3">
+                                  <div class="row">  
+                                      <div class="col-4 text-gray text-right pr-0 font-italic text-truncate"></div>
+                                      <div class="col-8 pl-2 text-truncate">{{stage.stagename}}</div>                          
+                                     
+                                    
+                                  </div>
+                                  <div class="  view-div1">
+                                          <button  type="button"
+                                          class="btn btn-warning btn-sm view-btn1 pull-right"
+                                          (click)="Gostage(stage)"
+                                         
+                                        > <i class="fa fa-sign-out" aria-hidden="true"></i> Products
+                                        </button>
+                                  </div>
+                              </div>
+                          </div>
+
+                      </div>
+                  </div>
+              </div>
+             
+          </div>
+      </div>  
+  </div>
+</div>
+
+<ng-template #modalContent1>
+  <div class="modal-body bg-gray modal-lg">
+      <div class="row">
+          <div class="col-12 vertical-tabs">                
+              <form [formGroup]="catform" (ngSubmit)="onSubmit1(catform.value)" class="row px-3">
+                  <div class="tab-content col-12 border-0">
+                      <div class="tab-pane active" id="basic">                                                
+                          <div class="form-group">
+                              <label class="text-gray">Sub Stage name</label>
+                              <input formControlName="stagename" class="form-control validation-field" type="text">
+                              <small class="text-danger" *ngIf="catform.controls.stagename.touched && catform.controls.stagename.errors?.required">Stagename is required</small>                          
+                          </div>
+                          <div></div>        
+                      </div>                         
+                  </div>
+                  <div class="col-12 bg-white text-center py-1">
+                      <button [disabled]="!catform.valid" class="btn btn-success" type="submit"><span *ngIf="!cat.Id">Add</span><span *ngIf="cat.Id">Update</span></button>
+                      <button type="button" class="btn btn-danger" (click)="closeModal()">Cancel</button>
+                  </div>
+              </form> 
+          </div>
+      </div>    
+  </div>
+</ng-template>
+

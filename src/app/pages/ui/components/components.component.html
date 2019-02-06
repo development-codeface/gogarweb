@@ -1,0 +1,130 @@
+
+<button type="button" (click)="backClicked()"  class="btn btn-success    w-100p mb-4"><i class="fa fa-chevron-circle-left" aria-hidden="true"></i> Back </button>
+<div class="row">
+    <div widget class="col-xl-6 mb-2 card border-0 ">
+        <div class="card-header transparent border-0 text-muted">
+            <h5 class="mb-0">{{userdatafull.Productname}}</h5>
+
+        </div>
+        <div class="card-body pt-0 widget-body">
+
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item" [ngClass]="{'active': i==0}" *ngFor="let img of userdatafull.Images;let i=index">
+
+                        <img class="d-block img-fluid w-100 h-100" [src]="imgurl+img" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+
+                        </div>
+                    </div>
+                    <div class="carousel-item active"  *ngIf="!userdatafull.Images">
+
+                        <img class="d-block img-fluid w-100 h-100" src="assets/img/users/default-user.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block">
+
+                        </div>
+                    </div>
+
+                </div>
+                <ul class="preview-thumbnail nav nav-tabs nextimg carousel-indicators">
+                    <li *ngFor="let img of userdatafull.Images;let i=index"><a data-target="#carouselExampleIndicators" [attr.data-slide-to]="i"><img
+                                [src]="imgurl+img" /></a></li>
+
+                </ul>
+                <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+
+    </div>
+    <div widget class="col-xl-6 mb-2 card border-0  ">
+        <h3 class="product-title mb-2 mt-5">{{userdatafull.Productname}}</h3>
+        <p class="productitem">Product id:
+            <span class="size" data-toggle="tooltip" title="xtra large">{{userdatafull.productId}}</span>
+        </p>
+        <p class="productitem">Product Category:
+            <span class="size" data-toggle="tooltip" title="xtra large">{{userdatafull.category}}</span>
+        </p>
+        <p class="productitem">Product subcategory:
+            <span class="size" data-toggle="tooltip" title="xtra large">{{userdatafull.subcategory}}</span>
+        </p>
+        <p class="productitem">Product Stage:
+            <span class="size" data-toggle="tooltip" title="xtra large">{{userdatafull.stage}}</span>
+        </p>
+        <p class="productitem">Sizes:
+            <span class="size" data-toggle="tooltip" title="xtra large">{{userdatafull.size}}</span>
+        </p>
+        <p class="productitem">Price:
+            <span class="size" data-toggle="tooltip" title="xtra large">${{userdatafull.price}}</span>
+        </p>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-12">
+
+        <div class="clearfix">
+            <ul class="nav nav-tabs custom top">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#ta"> Description</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#tb">Order request</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link " data-toggle="tab" href="#tc">Product Confirmation</a>
+
+                </li>
+            </ul>
+        </div>
+        <div class="tab-content top">
+            <div class="tab-pane active" id="ta">
+                <p>{{userdatafull.highlights}}</p>
+            </div>
+            <div class="tab-pane" id="tb">
+                <div widget class="card border-0 box-shadow">
+                    <div class="card-header transparent border-0 text-muted">
+
+
+                    </div>
+                    <div class="card-body pt-0 widget-body">
+                        <div class="table-responsive">
+                            <ng2-smart-table class="table table-hover" [settings]="settings" [source]="data" (deleteConfirm)="onDeleteConfirm($event)"
+                                (rowSelect)="onRowSelect($event)" (userRowSelect)="onUserRowSelect($event)" (rowHover)="onRowHover($event)"></ng2-smart-table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="tab-pane" id="tc">
+
+                <h5 class="sizes">Product Confirmation</h5>
+                <!--<p><b>Date</b> : 20/5/2018</p>
+                <p><b>Contact No</b> : 959709712345</p>
+                <p><b>Production times</b> : Bridal Dresses</p>
+                <p><b>Brand</b> : Akasa</p>
+                <p><b>Product Size</b> : xl</p>
+                <p><b>Color</b> : Blue</p>
+                <h5 class="sizes"> Location</h5>
+                <p>
+                    Long-Term Care 3rd Floor, 5700 Yonge Street Thiruvananthapuram, 629134</p>  -->
+                    <div class="table-responsive">
+                            <ng2-smart-table class="table table-hover" [settings]="settings" [source]="confirmOrder" (deleteConfirm)="onDeleteConfirm($event)"
+                                (rowSelect)="onRowSelect($event)" (userRowSelect)="onUserRowSelect($event)" (rowHover)="onRowHover($event)"></ng2-smart-table>
+                    </div>
+
+
+            </div>
+
+        </div>
+    </div>
+
+
+
+</div>
